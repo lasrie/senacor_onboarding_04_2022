@@ -1,4 +1,4 @@
-# Use postgres/example user/password credentials
+# Use postgres/senacor user/password credentials
 version: '3.1'
 
 services:
@@ -6,8 +6,12 @@ services:
   db:
     image: postgres
     restart: always
+    ports:
+        - '5432:5432'
     environment:
-      POSTGRES_PASSWORD: senacor
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: default_database
 
   adminer:
     image: adminer
