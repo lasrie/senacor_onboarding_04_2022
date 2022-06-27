@@ -1,8 +1,11 @@
 package com.senacor.orm;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,55 +14,28 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-@Table(name = "person")
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
+
+
 @Entity
-public class Person{
+public class Person extends PanacheEntity{
 
-    @Id
-    @SequenceGenerator(name = "personSeq", sequenceName = "person_id_seq", allocationSize = 1, initialValue = 1)
-    @GeneratedValue(generator = "personSeq")
-    private Integer id;
+    public String firstName;
+    public String lastName;
+    public Integer age;
 
-    @Column(name="first_name")
-    private String firstName;
-
-    @Column(name="last_name")
-    private String lastName;
-
-    @Column(name="age")
-    private Integer age;
-
+    
+    @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
-        name = "group_person",
-        joinColumns = {@JoinColumn(name = "person_id")},
-        inverseJoinColumns = {@JoinColumn(name = "group_id")})
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Group> memberships = new HashSet<>();
+        name = "person_groups", 
+        joinColumns = { @JoinColumn(name = "person_id") }, 
+        inverseJoinColumns = { @JoinColumn(name = "groups_id") }
+    )
+    public Set<Group> memberships = new HashSet<>();
 
-    public int getAge(){
-        return this.age;
-    }
 
-    public String getFirstName(){
-        return firstName;
-    }
-
-    public String getLastName(){
-        return lastName;
-    }
-
-    public void setAge(int age){
-        this.age = age;
-    }
-
-    public void setFirstName(String firstName){
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName){
-        this.lastName= lastName;
-    }
 }

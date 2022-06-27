@@ -1,10 +1,14 @@
 package com.senacor.orm;
 
+import java.sql.Date;
 import java.sql.Timestamp;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,46 +18,27 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
 @Entity
-@Table(name = "group")
-public class Group {
-    @Id
-    @SequenceGenerator(name = "groupSeq", sequenceName = "group_id_seq", allocationSize = 1, initialValue = 1)
-    @GeneratedValue(generator = "groupSeq")
-    private Integer id;
+@Table(name="groups")
+public class Group extends PanacheEntity{
+    
+    public String name;
 
-    @Column(name ="date_created")
-    private Timestamp creationDate;
+    public OffsetDateTime dateCreated;
 
-    @Column(name ="date_meeting")
-    private Timestamp meetingDate;
+    public OffsetDateTime dateMeeting;
 
-    @ManyToMany(mappedBy = "memberships", fetch = FetchType.EAGER)
-    private Set<Person> members = new HashSet<>();
+    @ManyToMany(
+        mappedBy = "memberships"
+    )
+    public Set<Person> members = new HashSet<Person>();
 
-    public Set<Person> getMembers() {
-        return members;
+    @Override
+    public String toString() {
+        return "Group [name=" + name + "]";
     }
-
-    public void addMember(Person newMember) {
-        this.members.add(newMember);
-    }
-
-    public Timestamp getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Timestamp creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public Timestamp getMeetingDate() {
-        return meetingDate;
-    }
-
-    public void setMeetingDate(Timestamp meetingDate) {
-        this.meetingDate = meetingDate;
-    }
-
 
 }
