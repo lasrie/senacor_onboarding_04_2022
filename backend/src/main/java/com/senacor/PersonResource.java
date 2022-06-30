@@ -67,9 +67,5 @@ public class PersonResource {
     @Transactional
     public Person update(Long id, Person person) {
         return personRepository.updatePerson(person, id);
-    }
-
-
-    
-    
+    }    
 }

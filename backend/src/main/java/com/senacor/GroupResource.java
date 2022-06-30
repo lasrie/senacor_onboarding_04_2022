@@ -7,6 +7,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -36,30 +37,16 @@ public class GroupResource {
     GroupRepository groupRepository;
 
     @POST
-    @Path("/group")
+    @Path("/")
     @Transactional
     public List<PersonDTO> createGroup(){
-        Long personsInDB = personRepository.count();
-        if(personsInDB < groupSize){
-            throw new NotEnoughPersonException(personsInDB);
-        }
-        
-        List<Person> all = personRepository.listAll();
-        Collections.shuffle(all);
-        List<Person> random = new ArrayList<Person>();
-        List<PersonDTO> returnList = new ArrayList<PersonDTO>();
+           return groupRepository.createGroup(groupSize);
+    }
 
-        Group meetGroup = new Group();
-        groupRepository.persist(meetGroup);
-
-        for(int i = 0; i< groupSize; i++){
-            Person randomPerson = all.get(i);
-            random.add(randomPerson);
-            randomPerson.memberships.add(meetGroup);
-            returnList.add(new PersonDTO(randomPerson.getFirstName(), randomPerson.getLastName(), randomPerson.getAge()));
-        }
-
-       return returnList;
+    @GET
+    @Path("/")
+    public List<Group> list() {
+        return groupRepository.listAll();
     }
     
 }

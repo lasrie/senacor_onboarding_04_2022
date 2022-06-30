@@ -35,6 +35,10 @@ public class Group {
     )
     private Set<Person> members = new HashSet<Person>();
 
+    
+    public Long getId() {
+        return id;
+    }
 
     public OffsetDateTime getDateCreated() {
         return dateCreated;

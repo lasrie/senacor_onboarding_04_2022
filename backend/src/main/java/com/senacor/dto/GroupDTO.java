@@ -7,14 +7,15 @@ import io.quarkus.runtime.annotations.RegisterForReflection;
 @RegisterForReflection
 public class GroupDTO {
 
-    public String name;
+    public Long id;
+
 
     public OffsetDateTime creationDate;
 
     public OffsetDateTime dateMeeting;
 
-    public GroupDTO(String name, OffsetDateTime creationDate, OffsetDateTime dateMeeting) {
-        this.name = name;
+    public GroupDTO(Long id, OffsetDateTime creationDate, OffsetDateTime dateMeeting) {
+        this.id = id;
         this.creationDate = creationDate;
         this.dateMeeting = dateMeeting;
     }

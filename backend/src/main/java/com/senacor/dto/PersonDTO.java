@@ -9,7 +9,8 @@ public class PersonDTO {
     public String lastName;
     public Integer age;
     
-    public PersonDTO(String firstName, String lastName, Integer age) {
+    public PersonDTO(Long id, String firstName, String lastName, Integer age) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
