@@ -2,8 +2,7 @@ package com.senacor;
 
 import org.junit.jupiter.api.Test;
 
-import com.senacor.orm.Group;
-
+import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.common.http.TestHTTPEndpoint;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.builder.RequestSpecBuilder;
@@ -11,7 +10,7 @@ import io.restassured.specification.RequestSpecification;
 
 import static io.restassured.RestAssured.*;
 
-import static org.hamcrest.CoreMatchers.*;
+
 
 import java.util.HashMap;
 import java.util.Map;

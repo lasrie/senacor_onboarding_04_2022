@@ -1,8 +1,7 @@
 package com.senacor.orm;
 
-import java.util.ArrayList;
+
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -15,7 +14,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 
 @Entity
@@ -36,7 +34,7 @@ public class Person{
     )
     public Set<Group> memberships = new HashSet<>();
 
-    
+
     public Long getId() {
         return id;
     }

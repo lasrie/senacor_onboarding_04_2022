@@ -17,7 +17,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 
-import com.senacor.dto.PersonDTO;
 import com.senacor.orm.Person;
 import com.senacor.orm.PersonRepository;
 

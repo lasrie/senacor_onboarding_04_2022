@@ -7,16 +7,23 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.*;
-import javax.json.JsonObject;
+
 
 import org.junit.jupiter.api.Test;
+import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
+import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.common.http.TestHTTPEndpoint;
 import io.quarkus.test.junit.QuarkusTest;
+
 
 @QuarkusTest
 @TestHTTPEndpoint(PersonResource.class) 
 public class PersonResourceTest {
+
+
     
     @Test
     public void testListEndpoint(){

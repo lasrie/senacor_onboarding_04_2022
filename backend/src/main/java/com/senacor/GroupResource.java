@@ -1,7 +1,5 @@
 package com.senacor;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -16,10 +14,8 @@ import javax.ws.rs.core.MediaType;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import com.senacor.dto.PersonDTO;
-import com.senacor.exceptions.NotEnoughPersonException;
 import com.senacor.orm.Group;
 import com.senacor.orm.GroupRepository;
-import com.senacor.orm.Person;
 import com.senacor.orm.PersonRepository;
 
 @Path("/groups")
