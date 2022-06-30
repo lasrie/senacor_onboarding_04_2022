@@ -6,27 +6,26 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 
 @Entity
-public class Person extends PanacheEntity{
+public class Person{
+    @Id @GeneratedValue
+    private Long id;
 
-    public String firstName;
-    public String lastName;
-    public Integer age;
+    private String firstName;
+    private String lastName;
+    private Integer age;
 
     
     @ManyToMany(cascade = { CascadeType.ALL })
@@ -36,6 +35,53 @@ public class Person extends PanacheEntity{
         inverseJoinColumns = { @JoinColumn(name = "groups_id") }
     )
     public Set<Group> memberships = new HashSet<>();
+
+    
+    public Long getId() {
+        return id;
+    }
+
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+
+    public String getLastName() {
+        return lastName;
+    }
+
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+
+    public Integer getAge() {
+        return age;
+    }
+
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+
+    public Set<Group> getMemberships() {
+        return memberships;
+    }
+
+
+    public void setMemberships(Set<Group> memberships) {
+        this.memberships = memberships;
+    }
+
+    
 
 
 }

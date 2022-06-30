@@ -19,26 +19,38 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
-import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @Entity
 @Table(name="groups")
-public class Group extends PanacheEntity{
-    
-    public String name;
+public class Group {
+    @Id @GeneratedValue
+    private Long id;
 
-    public OffsetDateTime dateCreated;
+    private OffsetDateTime dateCreated;
 
-    public OffsetDateTime dateMeeting;
+    private OffsetDateTime dateMeeting;
 
     @ManyToMany(
         mappedBy = "memberships"
     )
-    public Set<Person> members = new HashSet<Person>();
+    private Set<Person> members = new HashSet<Person>();
 
-    @Override
-    public String toString() {
-        return "Group [name=" + name + "]";
+
+    public OffsetDateTime getDateCreated() {
+        return dateCreated;
     }
+
+    public void setDateCreated(OffsetDateTime dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    public OffsetDateTime getDateMeeting() {
+        return dateMeeting;
+    }
+
+    public void setDateMeeting(OffsetDateTime dateMeeting) {
+        this.dateMeeting = dateMeeting;
+    }
+
 
 }

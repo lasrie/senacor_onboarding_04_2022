@@ -4,6 +4,7 @@ import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @RegisterForReflection
 public class PersonDTO {
+    public Long id;
     public String firstName;
     public String lastName;
     public Integer age;
